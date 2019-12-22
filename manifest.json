@@ -1,0 +1,13 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/nike4613/ModSaber-MetadataFileSchema/master/Schema.json",
+  "author": "PixelBoom",
+  "description": "This plugin uses the official Playlist loader to load custom playlist files in Beat Saber.",
+  "gameVersion": "1.6.0",
+  "id": "PlaylistLoaderPlugin",
+  "name": "PlaylistLoaderPlugin",
+  "version": "0.1.0",
+  "dependsOn": {
+
+  },
+  "features": []
+}
