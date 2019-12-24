@@ -14,6 +14,7 @@ namespace PlaylistLoaderPlugin.HarmonyPatches
         typeof(IAnnotatedBeatmapLevelCollection[]), typeof(int), typeof(bool)})]
     class PlaylistCollectionOverride
     {
+        private static IAnnotatedBeatmapLevelCollection[] loadedPlaylists;
         /// <summary>
         /// Adds this plugin's name to the beginning of the author text in the song list view.
         /// </summary>
@@ -21,7 +22,8 @@ namespace PlaylistLoaderPlugin.HarmonyPatches
         {
             if(playlists[0].GetType().Equals(typeof(UserFavoritesPlaylistSO))) //Checks if this is the playlists view
             {
-                IAnnotatedBeatmapLevelCollection[] loadedPlaylists = LoadPlaylistScript.load();
+                if (loadedPlaylists == null)
+                    refreshPlaylists();       
                 IAnnotatedBeatmapLevelCollection[] tempplaylists = new IAnnotatedBeatmapLevelCollection[playlists.Length + loadedPlaylists.Length];
                 for (int i = 0; i < playlists.Length; i++)
                 {
@@ -34,6 +36,11 @@ namespace PlaylistLoaderPlugin.HarmonyPatches
                 }
                 playlists = tempplaylists;
             }
+        }
+
+        public static void refreshPlaylists()
+        {
+            loadedPlaylists = LoadPlaylistScript.load();
         }
     }
 }

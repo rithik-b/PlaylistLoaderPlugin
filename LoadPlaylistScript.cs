@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.IO;
+﻿using System.IO;
 using System;
 using Newtonsoft.Json.Linq;
 using SongCore;
@@ -13,38 +12,62 @@ namespace PlaylistLoaderPlugin
         public static CustomPlaylistSO[] load()
         {
             string[] playlistPaths = Directory.GetFiles(Path.Combine(Environment.CurrentDirectory, "Playlists"), "*.json");
-            CustomPlaylistSO[] playlists = new CustomPlaylistSO[playlistPaths.Length];
-            for (int i = 0; i < playlists.Length; i++)
+            List<CustomPlaylistSO> playlists = new List<CustomPlaylistSO>();
+            for (int i = 0; i < playlistPaths.Length; i++)
             {
                 JObject playlistJSON = JObject.Parse(File.ReadAllText(playlistPaths[i]));
-                JArray songs = (JArray)playlistJSON["songs"];
-                List<IPreviewBeatmapLevel> beatmapLevels = new List<IPreviewBeatmapLevel>();
-                for (int j = 0; j < songs.Count; j++)
+                if (playlistJSON["songs"]!=null)
                 {
-                    beatmapLevels.Add((IPreviewBeatmapLevel) MatchSong((string)songs[j]["hash"]));
+                    JArray songs = (JArray)playlistJSON["songs"];
+                    List<IPreviewBeatmapLevel> beatmapLevels = new List<IPreviewBeatmapLevel>();
+                    for (int j = 0; j < songs.Count; j++)
+                    {
+                        IPreviewBeatmapLevel beatmapLevel = null;
+                        String hash = (string)songs[j]["hash"];
+                        beatmapLevel = MatchSong(hash);
+                        if(beatmapLevel!=null)
+                            beatmapLevels.Add(beatmapLevel);
+                        else
+                        {
+                            String levelID = (string)songs[j]["levelId"];
+                            if (!string.IsNullOrEmpty(levelID))
+                            {
+                                hash = Collections.hashForLevelID(levelID);
+                                beatmapLevel = MatchSong(hash);
+                                if (beatmapLevel != null)
+                                    beatmapLevels.Add(beatmapLevel);
+                                else
+                                    Logger.log.Warn($"Song not downloaded, : {(string.IsNullOrEmpty(hash) ? " unknown hash!" : ("hash " + hash + "!"))}");
+                            }
+                            else
+                                Logger.log.Warn($"Song not downloaded, : {(string.IsNullOrEmpty(hash) ? " unknown hash!" : ("hash " + hash + "!"))}");
+                        }
+                    }
+                    CustomBeatmapLevelCollectionSO customBeatmapLevelCollection = CustomBeatmapLevelCollectionSO.CreateInstance(beatmapLevels.ToArray());
+                    String playlistTitle = "Untitled Playlist";
+                    String playlistImage = CustomPlaylistSO.DEFAULT_IMAGE;
+                    if ((string)playlistJSON["playlistTitle"]!=null)
+                        playlistTitle = (string)playlistJSON["playlistTitle"];
+                    if ((string)playlistJSON["image"] != null)
+                        playlistImage = (string)playlistJSON["image"];
+                    playlists.Add(CustomPlaylistSO.CreateInstance(playlistTitle, playlistImage, customBeatmapLevelCollection));
                 }
-                foreach(String key in Loader.CustomLevels.Keys)
-                {
-                    Logger.log.Critical(Loader.CustomLevels[key].levelID.Split('_')[2]+ " " + Loader.CustomLevels[key].songName);
-                }
-                CustomBeatmapLevelCollectionSO customBeatmapLevelCollection = new CustomBeatmapLevelCollectionSO(beatmapLevels.ToArray());
-                playlists[i] = new CustomPlaylistSO((string)playlistJSON["playlistTitle"], (string)playlistJSON["image"], customBeatmapLevelCollection);
             }
-            return playlists;
+            return playlists.ToArray();
         }
 
-        private static CustomPreviewBeatmapLevel MatchSong(String hash)
+        private static IPreviewBeatmapLevel MatchSong(String hash)
         {
             if (!SongCore.Loader.AreSongsLoaded || SongCore.Loader.AreSongsLoading)
             {
                 Logger.log.Info("Songs not loaded. Not Matching songs for playlist.");
                 return null;
             }
-            CustomPreviewBeatmapLevel x = null;
+            IPreviewBeatmapLevel x = null;
             try
             {
                 if (!string.IsNullOrEmpty(hash))
-                x = SongCore.Loader.CustomLevels.Values.FirstOrDefault(y => string.Equals(y.levelID.Split('_')[2], hash, StringComparison.OrdinalIgnoreCase));
+                    x = SongCore.Loader.CustomLevels.Values.FirstOrDefault(y => string.Equals(y.levelID.Split('_')[2], hash, StringComparison.OrdinalIgnoreCase));
             }
             catch (Exception e)
             { 

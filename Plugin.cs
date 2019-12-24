@@ -6,15 +6,16 @@ using IPA;
 using IPA.Config;
 using IPA.Utilities;
 using UnityEngine.SceneManagement;
-using UnityEngine;
 using IPALogger = IPA.Logging.Logger;
 using Harmony;
 using System.Reflection;
+using PlaylistLoaderPlugin.UI;
 
 namespace PlaylistLoaderPlugin
 {
     public class Plugin : IBeatSaberPlugin
     {
+        public static Plugin instance;
         internal static string Name => "PlaylistLoaderPlugin";
         public const string HarmonyId = "com.github.rithik-b.PlaylistLoaderPlugin";
         internal static HarmonyInstance harmony;
@@ -56,6 +57,7 @@ namespace PlaylistLoaderPlugin
         {
             Logger.log.Debug("OnApplicationStart");
             ApplyHarmonyPatches();
+            PluginUI.instance.Setup();
         }
 
         public void OnApplicationQuit()
