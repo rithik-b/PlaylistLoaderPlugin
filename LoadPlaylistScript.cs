@@ -44,14 +44,14 @@ namespace PlaylistLoaderPlugin
                                 Logger.log.Warn($"Song not downloaded, : {(string.IsNullOrEmpty(hash) ? " unknown hash!" : ("hash " + hash + "!"))}");
                         }
                     }
-                    CustomBeatmapLevelCollectionSO customBeatmapLevelCollection = new CustomBeatmapLevelCollectionSO(beatmapLevels.ToArray());
+                    CustomBeatmapLevelCollectionSO customBeatmapLevelCollection = CustomBeatmapLevelCollectionSO.CreateInstance(beatmapLevels.ToArray());
                     String playlistTitle = "Untitled Playlist";
                     String playlistImage = CustomPlaylistSO.DEFAULT_IMAGE;
                     if ((string)playlistJSON["playlistTitle"]!=null)
                         playlistTitle = (string)playlistJSON["playlistTitle"];
                     if ((string)playlistJSON["image"] != null)
                         playlistImage = (string)playlistJSON["image"];
-                    playlists.Add(new CustomPlaylistSO(playlistTitle, playlistImage, customBeatmapLevelCollection));
+                    playlists.Add(CustomPlaylistSO.CreateInstance(playlistTitle, playlistImage, customBeatmapLevelCollection));
                 }
             }
             return playlists.ToArray();
