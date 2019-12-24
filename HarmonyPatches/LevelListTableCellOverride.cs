@@ -22,8 +22,8 @@ namespace PlaylistLoaderPlugin.HarmonyPatches
         {
             if(playlists[0].GetType().Equals(typeof(UserFavoritesPlaylistSO))) //Checks if this is the playlists view
             {
-                if(loadedPlaylists==null)
-                    loadedPlaylists = LoadPlaylistScript.load();        
+                if (loadedPlaylists == null)
+                    refreshPlaylists();       
                 IAnnotatedBeatmapLevelCollection[] tempplaylists = new IAnnotatedBeatmapLevelCollection[playlists.Length + loadedPlaylists.Length];
                 for (int i = 0; i < playlists.Length; i++)
                 {
@@ -36,6 +36,11 @@ namespace PlaylistLoaderPlugin.HarmonyPatches
                 }
                 playlists = tempplaylists;
             }
+        }
+
+        public static void refreshPlaylists()
+        {
+            loadedPlaylists = LoadPlaylistScript.load();
         }
     }
 }

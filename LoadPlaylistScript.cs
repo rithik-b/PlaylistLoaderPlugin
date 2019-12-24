@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.IO;
+﻿using System.IO;
 using System;
 using Newtonsoft.Json.Linq;
 using SongCore;

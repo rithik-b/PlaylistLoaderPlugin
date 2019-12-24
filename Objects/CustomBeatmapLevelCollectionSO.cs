@@ -1,24 +1,27 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000150 RID: 336
-public class CustomBeatmapLevelCollectionSO : PersistentScriptableObject, IBeatmapLevelCollection
+namespace PlaylistLoaderPlugin
 {
-	public static CustomBeatmapLevelCollectionSO CreateInstance(IPreviewBeatmapLevel[] beatmapLevels)
+	// Token: 0x02000150 RID: 336
+	public class CustomBeatmapLevelCollectionSO : PersistentScriptableObject, IBeatmapLevelCollection
 	{
-		CustomBeatmapLevelCollectionSO customBeatmapLevelCollectionSO = PersistentScriptableObject.CreateInstance<CustomBeatmapLevelCollectionSO>();
-		customBeatmapLevelCollectionSO._beatmapLevels = beatmapLevels;
-		return customBeatmapLevelCollectionSO;
-	}
-
-	public IPreviewBeatmapLevel[] beatmapLevels
-	{
-		get
+		public static CustomBeatmapLevelCollectionSO CreateInstance(IPreviewBeatmapLevel[] beatmapLevels)
 		{
-			return this._beatmapLevels;
+			CustomBeatmapLevelCollectionSO customBeatmapLevelCollectionSO = PersistentScriptableObject.CreateInstance<CustomBeatmapLevelCollectionSO>();
+			customBeatmapLevelCollectionSO._beatmapLevels = beatmapLevels;
+			return customBeatmapLevelCollectionSO;
 		}
-	}
 
-	[SerializeField]
-	protected IPreviewBeatmapLevel[] _beatmapLevels;
+		public IPreviewBeatmapLevel[] beatmapLevels
+		{
+			get
+			{
+				return this._beatmapLevels;
+			}
+		}
+
+		[SerializeField]
+		protected IPreviewBeatmapLevel[] _beatmapLevels;
+	}
 }
