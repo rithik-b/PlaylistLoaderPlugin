@@ -10,5 +10,8 @@ This mod isn't a replacement for PlaylistCore and does not load songs that aren'
 ## Download
 Download the latest version of the mod (v0.2.0) [here](https://github.com/rithik-b/PlaylistLoaderPlugin/releases/tag/0.2.0 "here")
 
+##Issues
+If you encounter any issues with this mod, PM me on Discord PixelBoom#6948 and I'll fix it as soon as I can.
+
 ## Screenshots
 ![](https://i.imgur.com/LbligvQ.png)
