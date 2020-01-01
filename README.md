@@ -10,7 +10,7 @@ This mod isn't a replacement for PlaylistCore and does not load songs that aren'
 ## Download
 Download the latest version of the mod (v1.0.0) [here](https://github.com/rithik-b/PlaylistLoaderPlugin/releases/tag/1.0.0 "here")
 To install, simply move the plugin dll to the Plugins folder of your Beat Saber install.
-BSML is required for this mod, so please download the latest version from ModAssistant.
+BSML and SongCore are required for this mod, so please download the latest version from ModAssistant.
 
 ## Issues and Support
 If you encounter any issues with this mod, PM me on Discord PixelBoom#6948 or file an Issue on GitHub and I'll fix it as soon as I can.
