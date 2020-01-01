@@ -3,7 +3,7 @@ This plugin uses the official Playlist loader to load custom playlist files in B
 This mod isn't a replacement for PlaylistCore and does not load songs that aren't locally available. Instead, it is for people who prefer a more lightweight mod for loading playlists in the game's native playlist UI.
 
 ## Features
-- Support for JSON custom playlists
+- Support for JSON & .bplist custom playlists
 - Loads custom playlists in the official playlists UI
 - Allows refreshing playlists using the "Refresh Playlists" button in the Mods tab
 
@@ -16,5 +16,10 @@ BSML is required for this mod, so please download the latest version from ModAss
 If you encounter any issues with this mod, PM me on Discord PixelBoom#6948 or file an Issue on GitHub and I'll fix it as soon as I can.
 For support with the mod, DM me or @ me on the #pc-mod-support channel on the BSMG discord.
 
+## Compilation Instructions (If you just want to use the plugin, download it from the Releases Tab)
+- Open the project in Visual Studio
+- Add missing references by locating them in your Beat Saber\Beat Saber_Data\Managed and Beat Saber\Plugins directories
+- Build the project
+- The plugin would be under PlaylistLoaderPlugin\bin\Debug
 ## Screenshots
 ![](https://i.imgur.com/LbligvQ.png)
