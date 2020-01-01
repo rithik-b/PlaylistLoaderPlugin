@@ -8,7 +8,7 @@ This mod isn't a replacement for PlaylistCore and does not load songs that aren'
 - Allows refreshing playlists using the "Refresh Playlists" button in the Mods tab
 
 ## Download
-Download the latest version of the mod (v0.2.0) [here](https://github.com/rithik-b/PlaylistLoaderPlugin/releases/tag/0.2.0 "here")
+Download the latest version of the mod (v1.0.0) [here](https://github.com/rithik-b/PlaylistLoaderPlugin/releases/tag/1.0.0 "here")
 To install, simply move the plugin dll to the Plugins folder of your Beat Saber install.
 BSML is required for this mod, so please download the latest version from ModAssistant.
 
