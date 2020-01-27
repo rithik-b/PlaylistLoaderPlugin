@@ -1,6 +1,7 @@
 ## Ignore References folder
-References/
-bin/
-obj/
-.vs/
-packages/
+PlaylistLoaderPlugin/References/
+PlaylistLoaderPlugin/bin/
+PlaylistLoaderPlugin/obj/
+PlaylistLoaderPlugin/.vs/
+PlaylistLoaderPlugin/packages/
+PlaylistLoaderPlugin/CreateJunctions.bat
