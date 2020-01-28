@@ -9,7 +9,7 @@ namespace PlaylistLoaderPlugin.UI
 
         internal void Setup()
         {
-            refreshButton = new MenuButton("Refresh Playlists", "Refresh Playlists (PlaylistLoaderPlugin)", RefreshButtonPressed, true);
+            refreshButton = new MenuButton("Refresh Playlists", "Refresh Songs & Playlists", RefreshButtonPressed, true);
             MenuButtons.instance.RegisterButton(refreshButton);
         }
 
@@ -20,6 +20,7 @@ namespace PlaylistLoaderPlugin.UI
 
         internal void RefreshButtonFlow()
         {
+            SongCore.Loader.Instance.RefreshSongs();
             PlaylistCollectionOverride.refreshPlaylists();
         }
     }
