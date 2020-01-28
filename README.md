@@ -7,8 +7,13 @@ This mod isn't a replacement for PlaylistCore and does not load songs that aren'
 - Loads custom playlists in the official playlists UI
 - Allows refreshing playlists using the "Refresh Playlists" button in the Mods tab
 
+## How To Use
+- Create a folder called "Playlists" in your Beat Saber installation folder
+- Store your playlists in the playlists folder
+- To manage your playlists, download missing songs or create your own, download [Beatlist](https://github.com/Alaanor/beatlist/releases "Beatlist")
+
 ## Download
-Download the latest version of the mod (v1.0.0) [here](https://github.com/rithik-b/PlaylistLoaderPlugin/releases/tag/1.0.0 "here")
+Download the latest version of the mod (v1.1.0) [here](https://github.com/rithik-b/PlaylistLoaderPlugin/releases/tag/1.1.0 "here")
 To install, simply move the plugin dll to the Plugins folder of your Beat Saber install.
 BSML and SongCore are required for this mod, so please download the latest version from ModAssistant.
 
@@ -21,5 +26,6 @@ For support with the mod, DM me or @ me on the #pc-mod-support channel on the BS
 - Add missing references by locating them in your Beat Saber\Beat Saber_Data\Managed and Beat Saber\Plugins directories
 - Build the project
 - The plugin would be under PlaylistLoaderPlugin\bin\Debug
+
 ## Screenshots
 ![](https://i.imgur.com/LbligvQ.png)
