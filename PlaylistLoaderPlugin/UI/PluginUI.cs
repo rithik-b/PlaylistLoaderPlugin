@@ -1,5 +1,8 @@
 ﻿using BeatSaberMarkupLanguage.MenuButtons;
 using PlaylistLoaderPlugin.HarmonyPatches;
+using UnityEngine;
+using SongCore;
+using System.Collections;
 
 namespace PlaylistLoaderPlugin.UI
 {
@@ -15,12 +18,13 @@ namespace PlaylistLoaderPlugin.UI
 
         internal void RefreshButtonPressed()
         {
-            RefreshButtonFlow();
+            StartCoroutine(RefreshButtonFlow());
         }
 
-        internal void RefreshButtonFlow()
+        internal IEnumerator RefreshButtonFlow()
         {
-            SongCore.Loader.Instance.RefreshSongs();
+            Loader.Instance.RefreshSongs();
+            yield return new WaitUntil(() => Loader.AreSongsLoaded == true);
             PlaylistCollectionOverride.refreshPlaylists();
         }
     }
