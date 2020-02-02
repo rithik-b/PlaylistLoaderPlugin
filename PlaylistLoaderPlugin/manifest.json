@@ -5,7 +5,7 @@
   "gameVersion": "1.6.0",
   "id": "PlaylistLoaderPlugin",
   "name": "PlaylistLoaderPlugin",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "dependsOn": {
     "SongCore": "^2.7.2",
     "BeatSaberMarkupLanguage": "^1.1.0"
