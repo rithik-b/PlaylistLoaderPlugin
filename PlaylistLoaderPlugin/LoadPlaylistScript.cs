@@ -39,10 +39,10 @@ namespace PlaylistLoaderPlugin
                                     if (beatmapLevel != null)
                                         beatmapLevels.Add(beatmapLevel);
                                     else
-                                        Logger.log.Warn($"Song not downloaded, : {(string.IsNullOrEmpty(hash) ? " unknown hash!" : ("hash " + hash + "!"))}");
+                                        Plugin.Log.Warn($"Song not downloaded, : {(string.IsNullOrEmpty(hash) ? " unknown hash!" : ("hash " + hash + "!"))}");
                                 }
                                 else
-                                    Logger.log.Warn($"Song not downloaded, : {(string.IsNullOrEmpty(hash) ? " unknown hash!" : ("hash " + hash + "!"))}");
+                                    Plugin.Log.Warn($"Song not downloaded, : {(string.IsNullOrEmpty(hash) ? " unknown hash!" : ("hash " + hash + "!"))}");
                             }
                         }
                         CustomBeatmapLevelCollectionSO customBeatmapLevelCollection = CustomBeatmapLevelCollectionSO.CreateInstance(beatmapLevels.ToArray());
@@ -56,7 +56,7 @@ namespace PlaylistLoaderPlugin
                     }
                 } catch(Exception e)
                 {
-                    Logger.log.Critical($"Error loading Playlist File: " + playlistPaths[i] + " Exception: " + e.Message);
+                    Plugin.Log.Critical($"Error loading Playlist File: " + playlistPaths[i] + " Exception: " + e.Message);
                 }
             }
             return playlists.ToArray();
@@ -66,7 +66,7 @@ namespace PlaylistLoaderPlugin
         {
             if (!SongCore.Loader.AreSongsLoaded || SongCore.Loader.AreSongsLoading)
             {
-                Logger.log.Info("Songs not loaded. Not Matching songs for playlist.");
+                Plugin.Log.Info("Songs not loaded. Not Matching songs for playlist.");
                 return null;
             }
             IPreviewBeatmapLevel x = null;
@@ -76,8 +76,8 @@ namespace PlaylistLoaderPlugin
                     x = SongCore.Loader.CustomLevels.Values.FirstOrDefault(y => string.Equals(y.levelID.Split('_')[2], hash, StringComparison.OrdinalIgnoreCase));
             }
             catch (Exception)
-            { 
-                Logger.log.Warn($"Unable to match song with {(string.IsNullOrEmpty(hash) ? " unknown hash!" : ("hash " + hash + " !"))}");
+            {
+                Plugin.Log.Warn($"Unable to match song with {(string.IsNullOrEmpty(hash) ? " unknown hash!" : ("hash " + hash + " !"))}");
             }
             return x;
         }
