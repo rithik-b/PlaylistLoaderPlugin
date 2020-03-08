@@ -4,7 +4,7 @@ using HarmonyLib;
 /// <summary>
 /// See https://github.com/pardeike/Harmony/wiki for a full reference on Harmony.
 /// </summary>
-namespace PlaylistLoaderPlugin.HarmonyPatches
+namespace PlaylistLoaderLite.HarmonyPatches
 {
     /// <summary>
     /// This is a patch of the method <see cref="PlaylistsViewController.SetData(IAnnotatedBeatmapLevelCollection[], int, bool)"/>

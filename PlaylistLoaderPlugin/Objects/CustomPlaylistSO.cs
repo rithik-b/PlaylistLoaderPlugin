@@ -2,7 +2,7 @@
 using Polyglot;
 using UnityEngine;
 
-namespace PlaylistLoaderPlugin
+namespace PlaylistLoaderLite
 {
 	public class CustomPlaylistSO : ScriptableObject, IPlaylist, IAnnotatedBeatmapLevelCollection
 	{

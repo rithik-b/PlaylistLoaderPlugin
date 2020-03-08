@@ -5,7 +5,7 @@ using SongCore;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PlaylistLoaderPlugin
+namespace PlaylistLoaderLite
 {
     public class LoadPlaylistScript
     {

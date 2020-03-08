@@ -1,10 +1,10 @@
 ﻿using BeatSaberMarkupLanguage.MenuButtons;
-using PlaylistLoaderPlugin.HarmonyPatches;
 using UnityEngine;
 using SongCore;
 using System.Collections;
+using PlaylistLoaderLite.HarmonyPatches;
 
-namespace PlaylistLoaderPlugin.UI
+namespace PlaylistLoaderLite.UI
 {
     public class PluginUI : PersistentSingleton<PluginUI>
     {
