@@ -3,8 +3,8 @@
   "author": "PixelBoom",
   "description": "This plugin uses the official Playlist loader to load custom playlist files in Beat Saber.",
   "gameVersion": "1.8.0",
-  "id": "PlaylistLoaderPlugin",
-  "name": "PlaylistLoaderPlugin",
+  "id": "PlaylistLoaderLite",
+  "name": "PlaylistLoaderLite",
   "version": "1.1.2",
   "dependsOn": {
     "SongCore": "^2.9.0",

@@ -8,8 +8,8 @@
     <ProjectGuid>{A90C52FF-4855-4810-9262-59A66B0B5C28}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PlaylistLoaderPlugin</RootNamespace>
-    <AssemblyName>PlaylistLoaderPlugin</AssemblyName>
+    <RootNamespace>PlaylistLoaderLite</RootNamespace>
+    <AssemblyName>PlaylistLoaderLite</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PathMap>$(SolutionDir)=C:\</PathMap>
@@ -374,7 +374,6 @@
     </Task>
   </UsingTask>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy "PlaylistLoaderLite.dll" "D:\Program Files\Steam\steamapps\common\Beat Saber\Plugins"</PostBuildEvent>
   </PropertyGroup>
 </Project>
