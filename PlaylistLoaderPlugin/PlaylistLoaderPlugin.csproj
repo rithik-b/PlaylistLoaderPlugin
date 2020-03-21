@@ -374,6 +374,6 @@
     </Task>
   </UsingTask>
   <PropertyGroup>
-    <PostBuildEvent>copy "PlaylistLoaderLite.dll" "D:\Program Files\Steam\steamapps\common\Beat Saber\Plugins"</PostBuildEvent>
+    <PostBuildEvent>copy "PlaylistLoaderLite.dll" "$(BeatSaberDir)\Plugins"</PostBuildEvent>
   </PropertyGroup>
 </Project>

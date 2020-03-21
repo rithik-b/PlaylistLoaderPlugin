@@ -4,9 +4,9 @@ using IPA.Config;
 using Logger = IPA.Logging.Logger;
 using System.Reflection;
 using HarmonyLib;
-using PlaylistLoaderPlugin.UI;
+using PlaylistLoaderLite.UI;
 
-namespace PlaylistLoaderPlugin
+namespace PlaylistLoaderLite
 {
     [Plugin(RuntimeOptions.SingleStartInit)]
     public class Plugin
@@ -16,8 +16,8 @@ namespace PlaylistLoaderPlugin
         public static Logger Log { get; private set; }
 
         public static Plugin instance;
-        internal static string Name => "PlaylistLoaderPlugin";
-        public const string HarmonyId = "com.github.rithik-b.PlaylistLoaderPlugin";
+        internal static string Name => "PlaylistLoaderLite";
+        public const string HarmonyId = "com.github.rithik-b.PlaylistLoaderLite";
         internal static Harmony harmony;
 
         #endregion
