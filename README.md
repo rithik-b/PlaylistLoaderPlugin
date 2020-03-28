@@ -13,7 +13,7 @@ This mod isn't a replacement for PlaylistCore and does not load songs that aren'
 - To manage your playlists, download missing songs or create your own, download [Beatlist](https://github.com/Alaanor/beatlist/releases "Beatlist")
 
 ## Download
-Download the latest version of the mod (v1.1.1) [here](https://github.com/rithik-b/PlaylistLoaderPlugin/releases/tag/1.1.1 "here")
+Download the latest version of the mod (v1.1.2) [here](https://github.com/rithik-b/PlaylistLoaderPlugin/releases/tag/1.1.2 "here")
 To install, simply move the plugin dll to the Plugins folder of your Beat Saber install.
 BSML and SongCore are required for this mod, so please download the latest version from ModAssistant.
 
