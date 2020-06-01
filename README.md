@@ -18,7 +18,7 @@ To install, simply move the plugin dll to the Plugins folder of your Beat Saber 
 BSML and SongCore are required for this mod, so please download the latest version from ModAssistant.
 
 ## Issues and Support
-If you encounter any issues with this mod, PM me on Discord PixelBoom#6948 or file an Issue on GitHub and I'll fix it as soon as I can.
+If you encounter any issues with this mod, PM me on Discord PixelBoom#0001 or file an Issue on GitHub and I'll fix it as soon as I can.
 For support with the mod, DM me or @ me on the #pc-mod-support channel on the BSMG discord.
 
 ## Compilation Instructions (If you just want to use the plugin, download it from the Releases Tab)
