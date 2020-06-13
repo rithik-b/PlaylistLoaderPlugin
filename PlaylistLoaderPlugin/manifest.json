@@ -7,7 +7,7 @@
   "name": "PlaylistLoaderLite",
   "version": "1.1.2",
   "dependsOn": {
-    "SongCore": "^2.9.0",
+    "SongCore": "^2.9.7",
     "BeatSaberMarkupLanguage": "^1.2.0"
   },
   "features": []
