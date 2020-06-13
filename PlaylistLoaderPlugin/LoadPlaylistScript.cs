@@ -73,7 +73,7 @@ namespace PlaylistLoaderLite
             try
             {
                 if (!string.IsNullOrEmpty(hash))
-                    x = SongCore.Loader.CustomLevels.Values.FirstOrDefault(y => string.Equals(y.levelID.Split('_')[2], hash, StringComparison.OrdinalIgnoreCase));
+                    x = SongCore.Loader.GetLevelByHash(hash);
             }
             catch (Exception)
             {
