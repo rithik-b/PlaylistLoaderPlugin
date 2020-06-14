@@ -32,7 +32,7 @@ namespace PlaylistLoaderLite
                                 beatmapLevels.Add(beatmapLevel);
                             else
                             {
-                                String levelID = (string)(songs[j]["levelId"] ?? songs[j]["levelid"]);
+                                String levelID = (string)(songs[j]["levelId"] ?? songs[j]["levelid"] ?? songs[j]["levelID"]);
                                 if (!string.IsNullOrEmpty(levelID))
                                 {
                                     beatmapLevel = MatchSongById(levelID);
