@@ -26,20 +26,20 @@ namespace PlaylistLoaderLite
                         {
                             IPreviewBeatmapLevel beatmapLevel = null;
                             String hash = (string)songs[j]["hash"];
-                            beatmapLevel = MatchSong(hash);
+                            if (!string.IsNullOrEmpty(hash))
+                                beatmapLevel = MatchSong(hash);
                             if (beatmapLevel != null)
                                 beatmapLevels.Add(beatmapLevel);
                             else
                             {
-                                String levelID = (string)songs[j]["levelId"];
+                                String levelID = (string)(songs[j]["levelId"] ?? songs[j]["levelid"] ?? songs[j]["levelID"]);
                                 if (!string.IsNullOrEmpty(levelID))
                                 {
-                                    hash = Collections.hashForLevelID(levelID);
-                                    beatmapLevel = MatchSong(hash);
+                                    beatmapLevel = MatchSongById(levelID);
                                     if (beatmapLevel != null)
                                         beatmapLevels.Add(beatmapLevel);
                                     else
-                                        Plugin.Log.Warn($"Song not downloaded, : {(string.IsNullOrEmpty(hash) ? " unknown hash!" : ("hash " + hash + "!"))}");
+                                        Plugin.Log.Warn($"Song not downloaded, : {(string.IsNullOrEmpty(levelID) ? " unknown levelID!" : ("levelID " + levelID + "!"))}");
                                 }
                                 else
                                     Plugin.Log.Warn($"Song not downloaded, : {(string.IsNullOrEmpty(hash) ? " unknown hash!" : ("hash " + hash + "!"))}");
@@ -54,12 +54,40 @@ namespace PlaylistLoaderLite
                             playlistImage = (string)playlistJSON["image"];
                         playlists.Add(CustomPlaylistSO.CreateInstance(playlistTitle, playlistImage, customBeatmapLevelCollection));
                     }
-                } catch(Exception e)
+                }
+                catch (Exception e)
                 {
                     Plugin.Log.Critical($"Error loading Playlist File: " + playlistPaths[i] + " Exception: " + e.Message);
                 }
             }
             return playlists.ToArray();
+        }
+
+        private static IPreviewBeatmapLevel MatchSongById(string levelId)
+        {
+            if (!SongCore.Loader.AreSongsLoaded || SongCore.Loader.AreSongsLoading)
+            {
+                Plugin.Log.Info("Songs not loaded. Not Matching songs for playlist.");
+                return null;
+            }
+            IPreviewBeatmapLevel x = null;
+            try
+            {
+                if (!string.IsNullOrEmpty(levelId))
+                {
+                    if (!levelId.StartsWith(CustomLevelLoader.kCustomLevelPrefixId))
+                        return Loader.GetOfficialLevelById(levelId).PreviewBeatmapLevel;
+                    else
+                    {
+                        x = MatchSong(Collections.hashForLevelID(levelId));
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                Plugin.Log.Warn($"Unable to match song with {(string.IsNullOrEmpty(levelId) ? " unknown levelId!" : ("levelId " + levelId + " !"))}");
+            }
+            return x;
         }
 
         private static IPreviewBeatmapLevel MatchSong(String hash)
@@ -73,7 +101,7 @@ namespace PlaylistLoaderLite
             try
             {
                 if (!string.IsNullOrEmpty(hash))
-                    x = SongCore.Loader.CustomLevels.Values.FirstOrDefault(y => string.Equals(y.levelID.Split('_')[2], hash, StringComparison.OrdinalIgnoreCase));
+                    x = SongCore.Loader.GetLevelByHash(hash);
             }
             catch (Exception)
             {
