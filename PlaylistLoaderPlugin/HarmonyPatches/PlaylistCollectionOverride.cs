@@ -1,5 +1,6 @@
 ﻿using System;
 using HarmonyLib;
+using PlaylistLoaderLite.UI;
 
 /// <summary>
 /// See https://github.com/pardeike/Harmony/wiki for a full reference on Harmony.
@@ -21,10 +22,9 @@ namespace PlaylistLoaderLite.HarmonyPatches
         /// </summary>
         static void Prefix(ref IAnnotatedBeatmapLevelCollection[] annotatedBeatmapLevelCollections)
         {
-            if(annotatedBeatmapLevelCollections[0].GetType().Equals(typeof(UserFavoritesPlaylistSO))) //Checks if this is the playlists view
+            // Checks if this is the playlists view
+            if (annotatedBeatmapLevelCollections[0].GetType().Equals(typeof(UserFavoritesPlaylistSO)))
             {
-                if (loadedPlaylists == null)
-                    refreshPlaylists();       
                 IAnnotatedBeatmapLevelCollection[] tempplaylists = new IAnnotatedBeatmapLevelCollection[annotatedBeatmapLevelCollections.Length + loadedPlaylists.Length];
                 for (int i = 0; i < annotatedBeatmapLevelCollections.Length; i++)
                 {
@@ -39,9 +39,10 @@ namespace PlaylistLoaderLite.HarmonyPatches
             }
         }
 
-        public static void refreshPlaylists()
+        public static int refreshPlaylists()
         {
             loadedPlaylists = LoadPlaylistScript.load();
+            return loadedPlaylists.Length;
         }
     }
 }

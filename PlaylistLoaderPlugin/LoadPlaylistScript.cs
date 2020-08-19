@@ -76,7 +76,7 @@ namespace PlaylistLoaderLite
                 if (!string.IsNullOrEmpty(levelId))
                 {
                     if (!levelId.StartsWith(CustomLevelLoader.kCustomLevelPrefixId))
-                        return Loader.GetOfficialLevelById(levelId).PreviewBeatmapLevel;
+                        return Loader.GetLevelById(levelId);
                     else
                     {
                         x = MatchSong(Collections.hashForLevelID(levelId));
