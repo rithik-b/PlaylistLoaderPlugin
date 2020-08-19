@@ -11,21 +11,16 @@ This mod isn't a replacement for PlaylistCore and does not load songs that aren'
 - Create a folder called "Playlists" in your Beat Saber installation folder
 - Store your playlists in the playlists folder
 - To manage your playlists, download missing songs or create your own, download [Beatlist](https://github.com/Alaanor/beatlist/releases "Beatlist")
+- [ModAssistant](https://github.com/Assistant/ModAssistant "ModAssistant") also has support for installing playlists
 
 ## Download
-Download the latest version of the mod (v1.1.2) [here](https://github.com/rithik-b/PlaylistLoaderPlugin/releases/tag/1.1.2 "here")
-To install, simply move the plugin dll to the Plugins folder of your Beat Saber install.
-BSML and SongCore are required for this mod, so please download the latest version from ModAssistant.
+Download the latest version of the mod (v1.2.0) [here](https://github.com/rithik-b/PlaylistLoaderPlugin/releases/tag/1.2.0 "here")
+To install, simply move the plugin dll to the Plugins folder of your Beat Saber install
+BSML and SongCore are required for this mod, so please download the latest version from ModAssistant
 
 ## Issues and Support
-If you encounter any issues with this mod, PM me on Discord PixelBoom#0001 or file an Issue on GitHub and I'll fix it as soon as I can.
-For support with the mod, DM me or @ me on the #pc-mod-support channel on the BSMG discord.
-
-## Compilation Instructions (If you just want to use the plugin, download it from the Releases Tab)
-- Open the project in Visual Studio
-- Add missing references by locating them in your Beat Saber\Beat Saber_Data\Managed and Beat Saber\Plugins directories
-- Build the project
-- The plugin would be under PlaylistLoaderPlugin\bin\Debug
+If you encounter any issues with this mod, PM me on Discord PixelBoom#0001 or file an Issue on GitHub and I'll fix it as soon as I can
+For support with the mod, DM me or @ me on the #pc-mod-support channel on the BSMG discord
 
 ## Screenshots
 ![](https://i.imgur.com/LbligvQ.png)
