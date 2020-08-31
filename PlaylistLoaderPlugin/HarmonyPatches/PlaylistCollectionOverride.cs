@@ -1,6 +1,5 @@
 ﻿using System;
 using HarmonyLib;
-using PlaylistLoaderLite.UI;
 
 /// <summary>
 /// See https://github.com/pardeike/Harmony/wiki for a full reference on Harmony.
@@ -14,14 +13,17 @@ namespace PlaylistLoaderLite.HarmonyPatches
     [HarmonyPatch(typeof(AnnotatedBeatmapLevelCollectionsViewController), "SetData",
         new Type[] { // Specify the types of SetDataFromLevelAsync's parameters here.
         typeof(IAnnotatedBeatmapLevelCollection[]), typeof(int), typeof(bool)})]
-    class PlaylistCollectionOverride
+    public class PlaylistCollectionOverride
     {
         private static IAnnotatedBeatmapLevelCollection[] loadedPlaylists;
         /// <summary>
         /// Adds this plugin's name to the beginning of the author text in the song list view.
         /// </summary>
-        static void Prefix(ref IAnnotatedBeatmapLevelCollection[] annotatedBeatmapLevelCollections)
+        internal static void Prefix(ref IAnnotatedBeatmapLevelCollection[] annotatedBeatmapLevelCollections)
         {
+            // Check if annotatedBeatmapLevelCollections is empty (Versus Tab)
+            if (annotatedBeatmapLevelCollections.Length == 0)
+                return;
             // Checks if this is the playlists view
             if (annotatedBeatmapLevelCollections[0].GetType().Equals(typeof(UserFavoritesPlaylistSO)))
             {
