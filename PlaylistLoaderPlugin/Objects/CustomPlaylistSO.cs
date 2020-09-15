@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.IO;
 using Polyglot;
 using UnityEngine;
 using Graphics = System.Drawing.Graphics;
@@ -28,7 +26,7 @@ namespace PlaylistLoaderLite
 			}
             try
             {
-				imageBytes = resizeImageBytes(imageBytes);
+				imageBytes = ResizeImageBytes(imageBytes);
 			}
 			catch (Exception) { }
 			Texture2D tex = new Texture2D(1024, 1024);
@@ -71,7 +69,7 @@ namespace PlaylistLoaderLite
 		[SerializeField]
 		protected CustomBeatmapLevelCollectionSO _beatmapLevelCollection;
 
-		private static byte[] resizeImageBytes(byte[] imageBytes) // Used for scaling image to appropriate resolution
+		private static byte[] ResizeImageBytes(byte[] imageBytes) // Used for scaling image to appropriate resolution
         {
 			// Convert byte array to image
 			ImageConverter converter = new ImageConverter();

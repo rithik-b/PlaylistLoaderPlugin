@@ -41,9 +41,9 @@ namespace PlaylistLoaderLite.HarmonyPatches
             }
         }
 
-        public static int refreshPlaylists()
+        public static int RefreshPlaylists()
         {
-            loadedPlaylists = LoadPlaylistScript.load();
+            loadedPlaylists = LoadPlaylistScript.Load();
             return loadedPlaylists.Length;
         }
     }

@@ -9,9 +9,11 @@ namespace PlaylistLoaderLite
 {
     public class LoadPlaylistScript
     {
-        public static CustomPlaylistSO[] load()
+        public static CustomPlaylistSO[] Load()
         {
-            string[] playlistPaths = Directory.EnumerateFiles(Path.Combine(Environment.CurrentDirectory, "Playlists"), "*.*").Where(p => p.EndsWith(".json") || p.EndsWith(".bplist")).ToArray();
+            string playlistFolderPath = Path.Combine(Environment.CurrentDirectory, "Playlists");
+            Directory.CreateDirectory(playlistFolderPath);
+            string[] playlistPaths = Directory.EnumerateFiles(playlistFolderPath, "*.*").Where(p => p.EndsWith(".json") || p.EndsWith(".bplist")).ToArray();
             List<CustomPlaylistSO> playlists = new List<CustomPlaylistSO>();
             for (int i = 0; i < playlistPaths.Length; i++)
             {

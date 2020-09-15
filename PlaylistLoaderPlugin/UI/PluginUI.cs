@@ -43,7 +43,7 @@ namespace PlaylistLoaderLite.UI
                 Loader.Instance.RefreshSongs();
 
             yield return new WaitUntil(() => Loader.AreSongsLoaded == true);
-            int numPlaylists = PlaylistCollectionOverride.refreshPlaylists();
+            int numPlaylists = PlaylistCollectionOverride.RefreshPlaylists();
 
             _progressBar.enabled = true;
             _progressBar.ShowMessage(string.Format("\n{0} playlists loaded.", numPlaylists), MESSAGE_TIME);
