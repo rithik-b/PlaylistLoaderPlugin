@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using HarmonyLib;
+using IPA;
+using SongCore.OverrideClasses;
 
 /// <summary>
 /// See https://github.com/pardeike/Harmony/wiki for a full reference on Harmony.
@@ -12,7 +15,7 @@ namespace PlaylistLoaderLite.HarmonyPatches
     /// </summary>
     [HarmonyPatch(typeof(AnnotatedBeatmapLevelCollectionsViewController), "SetData",
         new Type[] { // Specify the types of SetDataFromLevelAsync's parameters here.
-        typeof(IAnnotatedBeatmapLevelCollection[]), typeof(int), typeof(bool)})]
+        typeof(IReadOnlyList<IAnnotatedBeatmapLevelCollection>), typeof(int), typeof(bool)})]
     public class PlaylistCollectionOverride
     {
         private static IAnnotatedBeatmapLevelCollection[] loadedPlaylists;
@@ -25,7 +28,7 @@ namespace PlaylistLoaderLite.HarmonyPatches
             if (annotatedBeatmapLevelCollections.Length == 0)
                 return;
             // Checks if this is the playlists view
-            if (annotatedBeatmapLevelCollections[0].GetType().Equals(typeof(UserFavoritesPlaylistSO)))
+            if (annotatedBeatmapLevelCollections[0] is CustomBeatmapLevelPack)
             {
                 IAnnotatedBeatmapLevelCollection[] tempplaylists = new IAnnotatedBeatmapLevelCollection[annotatedBeatmapLevelCollections.Length + loadedPlaylists.Length];
                 for (int i = 0; i < annotatedBeatmapLevelCollections.Length; i++)
