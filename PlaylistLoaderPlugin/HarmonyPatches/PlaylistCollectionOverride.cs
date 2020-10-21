@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using HarmonyLib;
+using HMUI;
 using IPA;
+using PlaylistLoaderLite.Objects;
 using SongCore.OverrideClasses;
+using UnityEngine;
 
 /// <summary>
 /// See https://github.com/pardeike/Harmony/wiki for a full reference on Harmony.
@@ -30,17 +33,23 @@ namespace PlaylistLoaderLite.HarmonyPatches
             // Checks if this is the playlists view
             if (annotatedBeatmapLevelCollections[0] is CustomBeatmapLevelPack)
             {
-                IAnnotatedBeatmapLevelCollection[] tempplaylists = new IAnnotatedBeatmapLevelCollection[annotatedBeatmapLevelCollections.Length + loadedPlaylists.Length];
+                IAnnotatedBeatmapLevelCollection[] tempplaylists = new IAnnotatedBeatmapLevelCollection[6]; // 6 will be the playlists per page
+
                 for (int i = 0; i < annotatedBeatmapLevelCollections.Length; i++)
                 {
                     tempplaylists[i] = annotatedBeatmapLevelCollections[i];
                 }
                 int j = 0;
-                for (int i = annotatedBeatmapLevelCollections.Length; i < tempplaylists.Length; i++)
+                for (int i = annotatedBeatmapLevelCollections.Length; i < 6; i++)
                 {
                     tempplaylists[i] = loadedPlaylists[j++];
                 }
                 annotatedBeatmapLevelCollections = tempplaylists;
+
+                if (NavigationButtons.leftPlaylistsButton == null)
+                {
+                    NavigationButtons.ButtonsInit();
+                }
             }
         }
 

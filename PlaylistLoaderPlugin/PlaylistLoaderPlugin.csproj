@@ -134,6 +134,7 @@
     <Compile Include="Objects\CustomPlaylistSO.cs" />
     <Compile Include="HarmonyPatches\PlaylistCollectionOverride.cs" />
     <Compile Include="LoadPlaylistScript.cs" />
+    <Compile Include="Objects\NavigationButtons.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\PluginUI.cs" />

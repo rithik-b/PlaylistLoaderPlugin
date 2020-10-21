@@ -25,7 +25,7 @@ namespace PlaylistLoaderLite
         #region BSIPA Events
 
         [Init]
-        public Plugin(Logger logger, Config conf)
+        public Plugin(Logger logger)
         {
             Log = logger;
             Log.Debug("Logger initialised.");
