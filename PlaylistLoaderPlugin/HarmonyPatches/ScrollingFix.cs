@@ -1,13 +1,10 @@
 ﻿using HarmonyLib;
 using HMUI;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace PlaylistLoaderLite.HarmonyPatches
@@ -19,7 +16,7 @@ namespace PlaylistLoaderLite.HarmonyPatches
     {
         private static Vector2 _deltaPos;
         private static TableViewScroller _instance;
-        internal static readonly MethodInfo _swappedComparison = SymbolExtensions.GetMethodInfo(() => swappedComparison());
+        internal static readonly MethodInfo _swappedComparison = SymbolExtensions.GetMethodInfo(() => SwappedComparison());
 
         internal static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
@@ -58,7 +55,7 @@ namespace PlaylistLoaderLite.HarmonyPatches
             _instance = __instance;
         }
 
-        internal static float swappedComparison()
+        internal static float SwappedComparison() 
         {
             float num2 = _instance.position - _deltaPos.x * Time.deltaTime * 60f;
             Plugin.Log.Critical(num2.ToString());
@@ -71,10 +68,7 @@ namespace PlaylistLoaderLite.HarmonyPatches
             if (num2 > 0.0f)
                 num2 = 0.0f;
 
-
             return num2;
         }
     }
-
-
 }
