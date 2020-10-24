@@ -4,7 +4,6 @@ using System.Linq;
 using HarmonyLib;
 using HMUI;
 using IPA;
-using PlaylistLoaderLite.Objects;
 using SongCore.OverrideClasses;
 using UnityEngine;
 
@@ -34,18 +33,8 @@ namespace PlaylistLoaderLite.HarmonyPatches
                 for (int i = annotatedBeatmapLevelCollections.Length; i < allCustomBeatmapLevelCollections.Length; i++)
                     allCustomBeatmapLevelCollections[i] = loadedPlaylists[j++];
 
-                if (allCustomBeatmapLevelCollections.Length > NavigationButtons.MAX_PLAYLISTS_PER_PAGE) // If there are more playlists than max, enable buttons
-                {
-                    annotatedBeatmapLevelCollections = allCustomBeatmapLevelCollections;//allCustomBeatmapLevelCollections.Take(NavigationButtons.MAX_PLAYLISTS_PER_PAGE).ToArray();
-                    NavigationButtons.EnableButtons();
-                }
-                else
-                    annotatedBeatmapLevelCollections = allCustomBeatmapLevelCollections;
+                annotatedBeatmapLevelCollections = allCustomBeatmapLevelCollections;
             }
-            else
-            {
-                NavigationButtons.DisableButtons();
-            }    
         }
 
         public static int RefreshPlaylists()
