@@ -40,7 +40,7 @@ namespace PlaylistLoaderLite.UI
         internal IEnumerator RefreshButtonFlow()
         {
             if (!Loader.AreSongsLoading)
-                Loader.Instance.RefreshSongs();
+                Loader.Instance.RefreshSongs(fullRefresh: false);
 
             yield return new WaitUntil(() => Loader.AreSongsLoaded == true);
             int numPlaylists = PlaylistCollectionOverride.RefreshPlaylists();
