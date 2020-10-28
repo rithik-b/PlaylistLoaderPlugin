@@ -17,7 +17,7 @@ For scrolling through the playlists in the UI, you need to fix controller bindin
 - [ModAssistant](https://github.com/Assistant/ModAssistant "ModAssistant") also has support for installing playlists
 
 ## Download
-Download the latest version of the mod (v1.2.3) [here](https://github.com/rithik-b/PlaylistLoaderPlugin/releases/tag/1.2.3 "here")
+Download the latest version of the mod (v1.2.4) [here](https://github.com/rithik-b/PlaylistLoaderPlugin/releases/tag/1.2.4 "here")
 To install, simply move the plugin dll to the Plugins folder of your Beat Saber install
 BSML and SongCore are required for this mod, so please download the latest version from ModAssistant
 
