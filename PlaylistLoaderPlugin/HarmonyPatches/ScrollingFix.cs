@@ -58,8 +58,6 @@ namespace PlaylistLoaderLite.HarmonyPatches
         internal static float SwappedComparison() 
         {
             float num2 = _instance.position - _deltaPos.x * Time.deltaTime * 60f;
-            Plugin.Log.Critical(num2.ToString());
-
             float fixedScrollableSize = - _instance.scrollableSize;
 
             if (num2 < fixedScrollableSize)
