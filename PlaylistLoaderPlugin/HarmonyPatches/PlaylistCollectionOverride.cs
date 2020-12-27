@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
 
 namespace PlaylistLoaderLite.HarmonyPatches
@@ -9,7 +10,13 @@ namespace PlaylistLoaderLite.HarmonyPatches
         typeof(IReadOnlyList<IAnnotatedBeatmapLevelCollection>), typeof(int), typeof(bool)})]
     public class PlaylistCollectionOverride
     {
-        private static IAnnotatedBeatmapLevelCollection[] loadedPlaylists;
+        private static IAnnotatedBeatmapLevelCollection[] loadedPlaylists
+        {
+            get
+            {
+                return (IAnnotatedBeatmapLevelCollection[])(from playlist in LoadPlaylistScript.loadedPlaylists select playlist._playlistSO).ToArray();
+            }
+        }
 
         internal static void Prefix(ref IAnnotatedBeatmapLevelCollection[] annotatedBeatmapLevelCollections)
         {
@@ -34,7 +41,7 @@ namespace PlaylistLoaderLite.HarmonyPatches
 
         public static int RefreshPlaylists()
         {
-            loadedPlaylists = LoadPlaylistScript.Load();
+            LoadPlaylistScript.Load();
             return loadedPlaylists.Length;
         }
     }

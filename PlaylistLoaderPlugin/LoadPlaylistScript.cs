@@ -9,12 +9,13 @@ namespace PlaylistLoaderLite
 {
     public class LoadPlaylistScript
     {
-        public static CustomPlaylistSO[] Load()
+        public static Playlist[] loadedPlaylists;
+        public static void Load()
         {
             string playlistFolderPath = Path.Combine(Environment.CurrentDirectory, "Playlists");
             Directory.CreateDirectory(playlistFolderPath);
             string[] playlistPaths = Directory.EnumerateFiles(playlistFolderPath, "*.*").Where(p => p.EndsWith(".json") || p.EndsWith(".bplist")).ToArray();
-            List<CustomPlaylistSO> playlists = new List<CustomPlaylistSO>();
+            List<Playlist> playlists = new List<Playlist>();
             for (int i = 0; i < playlistPaths.Length; i++)
             {
                 try
@@ -54,7 +55,8 @@ namespace PlaylistLoaderLite
                             playlistTitle = (string)playlistJSON["playlistTitle"];
                         if ((string)playlistJSON["image"] != null)
                             playlistImage = (string)playlistJSON["image"];
-                        playlists.Add(CustomPlaylistSO.CreateInstance(playlistTitle, playlistImage, customBeatmapLevelCollection));
+                        CustomPlaylistSO customPlaylistSO = CustomPlaylistSO.CreateInstance(playlistTitle, playlistImage, customBeatmapLevelCollection);
+                        playlists.Add(new Playlist(customPlaylistSO, playlistPaths[i], playlistJSON));
                     }
                 }
                 catch (Exception e)
@@ -62,7 +64,7 @@ namespace PlaylistLoaderLite
                     Plugin.Log.Critical($"Error loading Playlist File: " + playlistPaths[i] + " Exception: " + e.Message);
                 }
             }
-            return playlists.ToArray();
+            loadedPlaylists = playlists.ToArray();
         }
 
         private static IPreviewBeatmapLevel MatchSongById(string levelId)

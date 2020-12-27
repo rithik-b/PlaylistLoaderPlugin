@@ -36,6 +36,15 @@ namespace PlaylistLoaderLite
 			return customPlaylistSO;
 		}
 
+		public static CustomPlaylistSO CreateInstance(String name, Sprite coverImage, CustomBeatmapLevelCollectionSO beatmapLevelCollection)
+		{
+			CustomPlaylistSO customPlaylistSO = ScriptableObject.CreateInstance<CustomPlaylistSO>();
+			customPlaylistSO._playListLocalizedName = name;
+			customPlaylistSO._coverImage = coverImage;
+			customPlaylistSO._beatmapLevelCollection = beatmapLevelCollection;
+			return customPlaylistSO;
+		}
+
 		public string collectionName
 		{
 			get
