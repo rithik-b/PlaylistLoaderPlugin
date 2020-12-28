@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System.IO;
 using Newtonsoft.Json;
+using System;
 
 namespace PlaylistLoaderLite
 {
@@ -75,6 +76,37 @@ namespace PlaylistLoaderLite
             {
                 _playlistJSON.WriteTo(writer);
             }
+        }
+
+        public static void CreatePlaylist(string playlistName, string playlistAuthorName)
+        {
+            string playlistFolderPath = Path.Combine(Environment.CurrentDirectory, "Playlists");
+
+            JObject playlistJSON = new JObject();
+            playlistJSON["playlistTitle"] = playlistName;
+            playlistJSON["playlistAuthor"] = playlistAuthorName;
+            playlistJSON["image"] = CustomPlaylistSO.DEFAULT_IMAGE;
+            playlistJSON["songs"] = new JArray();
+
+            string playlistFileName = String.Join("_", playlistName.Split(' '));
+            string playlistPath = Path.Combine(playlistFolderPath, playlistFileName + ".json");
+            string originalPlaylistPath = Path.Combine(playlistFolderPath, playlistFileName);
+            int dupNum = 0;
+            while(File.Exists(playlistPath))
+            {
+                dupNum++;
+                playlistPath = originalPlaylistPath + string.Format("({0}).json", dupNum);
+            }
+
+            using (StreamWriter file = File.CreateText(playlistPath))
+            using (JsonTextWriter writer = new JsonTextWriter(file))
+            {
+                playlistJSON.WriteTo(writer);
+            }
+            CustomBeatmapLevelCollectionSO customBeatmapLevelCollection = CustomBeatmapLevelCollectionSO.CreateInstance(new IPreviewBeatmapLevel[0]);
+            CustomPlaylistSO playlistSO = CustomPlaylistSO.CreateInstance(playlistName, CustomPlaylistSO.DEFAULT_IMAGE, customBeatmapLevelCollection);
+            Playlist playlist = new Playlist(playlistSO, playlistPath, playlistJSON);
+            LoadPlaylistScript.loadedPlaylists.Add(playlist);
         }
     }
 }
