@@ -4,6 +4,7 @@ using Newtonsoft.Json.Linq;
 using SongCore;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace PlaylistLoaderLite
 {
@@ -16,6 +17,7 @@ namespace PlaylistLoaderLite
             Directory.CreateDirectory(playlistFolderPath);
             string[] playlistPaths = Directory.EnumerateFiles(playlistFolderPath, "*.*").Where(p => p.EndsWith(".json") || p.EndsWith(".bplist")).ToArray();
             List<Playlist> playlists = new List<Playlist>();
+            Dictionary<string, Sprite> cachedSprites = new Dictionary<string, Sprite>();
             for (int i = 0; i < playlistPaths.Length; i++)
             {
                 try
@@ -55,7 +57,16 @@ namespace PlaylistLoaderLite
                             playlistTitle = (string)playlistJSON["playlistTitle"];
                         if ((string)playlistJSON["image"] != null)
                             playlistImage = (string)playlistJSON["image"];
-                        CustomPlaylistSO customPlaylistSO = CustomPlaylistSO.CreateInstance(playlistTitle, playlistImage, customBeatmapLevelCollection);
+                        CustomPlaylistSO customPlaylistSO;
+                        if (!cachedSprites.ContainsKey(playlistImage))
+                        {
+                            customPlaylistSO = CustomPlaylistSO.CreateInstance(playlistTitle, playlistImage, customBeatmapLevelCollection);
+                            cachedSprites.Add(playlistImage, customPlaylistSO.coverImage);
+                        }
+                        else
+                        {
+                            customPlaylistSO = CustomPlaylistSO.CreateInstance(playlistTitle, cachedSprites[playlistImage], customBeatmapLevelCollection);
+                        }
                         playlists.Add(new Playlist(customPlaylistSO, playlistPaths[i], playlistJSON));
                     }
                 }
