@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace PlaylistLoaderLite
 {
@@ -11,6 +12,8 @@ namespace PlaylistLoaderLite
         internal CustomPlaylistSO _playlistSO;
         internal string _playlistPath;
         internal JObject _playlistJSON;
+
+        public static List<Playlist> loadedPlaylists;
 
         public IBeatmapLevelCollection beatmapLevelCollection
         {
@@ -106,7 +109,24 @@ namespace PlaylistLoaderLite
             CustomBeatmapLevelCollectionSO customBeatmapLevelCollection = CustomBeatmapLevelCollectionSO.CreateInstance(new IPreviewBeatmapLevel[0]);
             CustomPlaylistSO playlistSO = CustomPlaylistSO.CreateInstance(playlistName, CustomPlaylistSO.DEFAULT_IMAGE, customBeatmapLevelCollection);
             Playlist playlist = new Playlist(playlistSO, playlistPath, playlistJSON);
-            LoadPlaylistScript.loadedPlaylists.Add(playlist);
+            loadedPlaylists.Add(playlist);
+        }
+
+        public static bool DeletePlaylist(IAnnotatedBeatmapLevelCollection annotatedBeatmapLevelCollection)
+        {
+            foreach (Playlist playlist in loadedPlaylists)
+            {
+                if (((IAnnotatedBeatmapLevelCollection)playlist._playlistSO).Equals(annotatedBeatmapLevelCollection))
+                {
+                    if (File.Exists(playlist._playlistPath))
+                    {
+                        File.Delete(playlist._playlistPath);
+                        loadedPlaylists.Remove(playlist);
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

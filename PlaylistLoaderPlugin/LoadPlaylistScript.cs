@@ -10,7 +10,6 @@ namespace PlaylistLoaderLite
 {
     public class LoadPlaylistScript
     {
-        public static List<Playlist> loadedPlaylists;
         public static void Load()
         {
             string playlistFolderPath = Path.Combine(Environment.CurrentDirectory, "Playlists");
@@ -75,7 +74,7 @@ namespace PlaylistLoaderLite
                     Plugin.Log.Critical($"Error loading Playlist File: " + playlistPaths[i] + " Exception: " + e.Message);
                 }
             }
-            loadedPlaylists = playlists;
+            Playlist.loadedPlaylists = playlists;
         }
 
         private static IPreviewBeatmapLevel MatchSongById(string levelId)

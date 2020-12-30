@@ -14,7 +14,7 @@ namespace PlaylistLoaderLite.HarmonyPatches
         {
             get
             {
-                return (IAnnotatedBeatmapLevelCollection[])(from playlist in LoadPlaylistScript.loadedPlaylists select playlist._playlistSO).ToArray();
+                return (IAnnotatedBeatmapLevelCollection[])(from playlist in Playlist.loadedPlaylists select playlist._playlistSO).ToArray();
             }
         }
 
