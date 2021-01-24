@@ -1,7 +1,8 @@
 # PlaylistLoaderLite
 
 ## UPDATE
-This plugin is now archived. For 1.13.2 please use [PlaylistManager](https://github.com/rithik-b/PlaylistManager)
+This plugin is now archived. For 1.13.2 please use [PlaylistManager](https://github.com/rithik-b/PlaylistManager).
+Thank you for using this plugin!
 
 This plugin uses the official Playlist loader to load custom playlist files in Beat Saber.
 This mod isn't a replacement for PlaylistCore and does not load songs that aren't locally available. Instead, it is for people who prefer a more lightweight mod for loading playlists in the game's native playlist UI.
